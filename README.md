@@ -8,7 +8,7 @@ This is a customizable portfolio template designed to showcase your work and ski
 - Smooth scrolling and animations
 - Easy-to-edit HTML, CSS, and JavaScript files
 
-  Live Deployment: https://portfolio-template2-1fjj353sc-su5867s-projects.vercel.app
+  Live Deployment: https://portfolio-template2-avwfv4b9r-su5867s-projects.vercel.app
 
 ## 📂 Folder Structure
 ```
