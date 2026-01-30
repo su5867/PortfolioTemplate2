@@ -1,64 +1,88 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <meta name="description" content="Supriya Dwivedi - Full-Stack Developer specializing in mobile app development and game development with Java">
+    <meta name="keywords" content="Full-Stack Developer, Game Developer, App Developer, Java, Spring Boot, Web Development">
+    <meta name="author" content="Supriya Dwivedi">
+    
+    <title>Supriya Dwivedi | Full-Stack Developer Portfolio</title>
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
+    <!-- Header / Navigation -->
     <header>
-        <div class="logo"><span>S</span>upriya.</div>
-        <ul class="navlist">
-            <li><a href="#home" style="--i:1">Home</a></li>
-            <li><a href="#about" style="--i:2">About</a></li>
-            <li><a href="#services" style="--i:3">Services</a></li>
-            <li><a href="#skills" style="--i:4">Skills</a></li>
-            <li><a href="#experience" style="--i:5">Experience</a></li>
-            <li><a href="#portfolio" style="--i:6">Portfolio</a></li>
-            <li><a href="#contact" style="--i:7">Contact</a></li>
-        </ul>
-        <div id="menu-icon" class="bx bx-menu"></div>
+        <div class="logo" aria-label="Supriya Dwivedi">
+            <span>S</span>upriya.
+        </div>
+        
+        <nav>
+            <ul class="navlist" role="menubar">
+                <li role="none"><a href="#home" role="menuitem" style="--i:1" aria-label="Navigate to Home">Home</a></li>
+                <li role="none"><a href="#about" role="menuitem" style="--i:2" aria-label="Navigate to About">About</a></li>
+                <li role="none"><a href="#services" role="menuitem" style="--i:3" aria-label="Navigate to Services">Services</a></li>
+                <li role="none"><a href="#skills" role="menuitem" style="--i:4" aria-label="Navigate to Skills">Skills</a></li>
+                <li role="none"><a href="#experience" role="menuitem" style="--i:5" aria-label="Navigate to Experience">Experience</a></li>
+                <li role="none"><a href="#portfolio" role="menuitem" style="--i:6" aria-label="Navigate to Portfolio">Portfolio</a></li>
+                <li role="none"><a href="#contact" role="menuitem" style="--i:7" aria-label="Navigate to Contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <button id="menu-icon" class="bx bx-menu" aria-label="Toggle navigation menu" aria-expanded="false"></button>
     </header>
 
-
+    <!-- Home Section -->
     <section id="home" class="home">
         <div class="home-content scroll-scale">
-            <h1>Hi! I`m Supriya Dwivedi</h1>
+            <h1>Hi! I'm Supriya Dwivedi</h1>
+            
             <div class="change-text">
-                <h3>And I`m</h3>
-                   <h3>
+                <h3>And I'm</h3>
+                <h3 aria-live="polite">
                     <span class="word">Full-Stack Developer</span>
                     <span class="word">Game&nbsp;Developer</span>
                     <span class="word">App&nbsp;Developer</span>
                 </h3>
             </div>
-                <p>Full-Stack Developer specializing in mobile app development and building games with Java. Passionate about creating innovative solutions across platforms.</p>
+            
+            <p>Full-Stack Developer specializing in mobile app development and building games with Java. Passionate about creating innovative solutions across platforms.</p>
 
             <div class="info-box">
                 <div class="email-info">
                     <h5>Email:</h5>
-                    <span>me.supriya07@gmail.com</span>
+                    <span><a href="mailto:me.supriya07@gmail.com">me.supriya07@gmail.com</a></span>
                 </div>
             </div>
 
             <div class="btn-box">
-                <a href="Supriya Dwivedi - Resume.pdf" class="btn">Download CV</a>
-                <a href="#" class="btn">Hire Me Now!</a>
+                <a href="Supriya Dwivedi - Resume.pdf" class="btn" download aria-label="Download CV">Download CV</a>
+                <a href="#contact" class="btn" aria-label="Hire me now">Hire Me Now!</a>
             </div>
+            
             <div class="social-icons">
-                <a href="https://linkedin.com/in/supriya-dwivedi"><i class='bx bxl-linkedin'></i></a>
-                <a href="https://github.com/su5867"><i class='bx bxl-github'></i></a>
+                <a href="https://linkedin.com/in/supriya-dwivedi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    <i class="bx bxl-linkedin"></i>
+                </a>
+                <a href="https://github.com/su5867" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                    <i class="bx bxl-github"></i>
+                </a>
             </div>
         </div>
 
         <div class="home-image scroll-scale">
             <div class="img-box">
-                <img src="img1.jpg" alt="Profile">
+                <img src="img1.jpg" alt="Supriya Dwivedi - Full-Stack Developer">
             </div>
-            <div class="liquid-shape">
-                <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg">
+            <div class="liquid-shape" aria-hidden="true">
+                <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" width="100%" id="blobSvg">
                     <path fill="#12f7ff">
                         <animate attributeName="d"
                         dur="20000ms"
@@ -72,13 +96,12 @@
                         M446.5,310Q458,370,398,386Q338,402,294,430Q250,458,193.5,452.5Q137,447,100,402.5Q63,358,37.5,304Q12,250,34,194Q56,138,105.5,111.5Q155,85,202.5,89Q250,93,308,71.5Q366,50,395,100Q424,150,429.5,200Q435,250,446.5,310Z;
                         M472.5,311.5Q462,373,404.5,396Q347,419,298.5,424.5Q250,430,200,426.5Q150,423,127.5,378.5Q105,334,93.5,292Q82,250,79,200Q76,150,108,104.5Q140,59,195,65Q250,71,308.5,59Q367,47,408.5,90.5Q450,134,466.5,192Q483,250,472.5,311.5Z;
                         M450,308.5Q452,367,396.5,387.5Q341,408,295.5,454Q250,500,205.5,452.5Q161,405,117.5,378.5Q74,352,83.5,301Q93,250,92.5,204.5Q92,159,126.5,127Q161,95,205.5,71Q250,47,290,79.5Q330,112,378,130.5Q426,149,437,199.5Q448,250,450,308.5Z;
-                        "
-                    ></animate>
+                        "></animate>
                     </path>
-                  </svg>
+                </svg>
             </div>
-            <div class="liquid-shape">
-                <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg">
+            <div class="liquid-shape" aria-hidden="true">
+                <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" width="100%" id="blobSvg2">
                     <path fill="#12f7ff">
                         <animate attributeName="d"
                         dur="20000ms"
@@ -92,22 +115,25 @@
                         M446.5,310Q458,370,398,386Q338,402,294,430Q250,458,193.5,452.5Q137,447,100,402.5Q63,358,37.5,304Q12,250,34,194Q56,138,105.5,111.5Q155,85,202.5,89Q250,93,308,71.5Q366,50,395,100Q424,150,429.5,200Q435,250,446.5,310Z;
                         M472.5,311.5Q462,373,404.5,396Q347,419,298.5,424.5Q250,430,200,426.5Q150,423,127.5,378.5Q105,334,93.5,292Q82,250,79,200Q76,150,108,104.5Q140,59,195,65Q250,71,308.5,59Q367,47,408.5,90.5Q450,134,466.5,192Q483,250,472.5,311.5Z;
                         M450,308.5Q452,367,396.5,387.5Q341,408,295.5,454Q250,500,205.5,452.5Q161,405,117.5,378.5Q74,352,83.5,301Q93,250,92.5,204.5Q92,159,126.5,127Q161,95,205.5,71Q250,47,290,79.5Q330,112,378,130.5Q426,149,437,199.5Q448,250,450,308.5Z;
-                        "
-                    ></animate>
+                        "></animate>
                     </path>
-                  </svg>
+                </svg>
             </div>
         </div>
     </section>
+
+    <!-- About Section -->
     <section id="about" class="about">
         <div class="img-about scroll-scale">
-            <img src="img1.jpg" alt="about-me">
+            <img src="img1.jpg" alt="Supriya Dwivedi - About Me">
         </div>
+        
         <div class="about-content scroll-scale">
             <span>Let Me Introduce Myself</span>
             <h2>About Me</h2>
-            <h3>A story of good</h3>
-            <p>I'm a passionate Full-Stack Developer specializing in mobile app development and building games with Java. I have a strong foundation in full-stack web development, holding a BSC.CSIT degree where I secured 73.98%. I enjoy building responsive, user-friendly applications and constantly strive to improve my skills through hands-on projects. My experience includes working with technologies like Java, Spring Boot, MySQL, JavaScript, HTML/CSS, and Git. I’m always eager to take on new challenges and contribute to impactful digital solutions across platforms.</p>
+            <h3>A Story of Excellence</h3>
+            <p>I'm a passionate Full-Stack Developer specializing in mobile app development and building games with Java. I have a strong foundation in full-stack web development, holding a BSC.CSIT degree where I secured 73.98%. I enjoy building responsive, user-friendly applications and constantly strive to improve my skills through hands-on projects. My experience includes working with technologies like Java, Spring Boot, MySQL, JavaScript, HTML/CSS, and Git. I'm always eager to take on new challenges and contribute to impactful digital solutions across platforms.</p>
+            
             <div class="qualifications">
                 <div class="qual-item">
                     <span>Intermediate</span>
@@ -118,116 +144,129 @@
                     <p>Secured 73.98%</p>
                 </div>
             </div>
+            
             <div class="btn-box">
-                <a href="#" class="btn">Read More!</a>
+                <a href="#contact" class="btn">Talk with Me</a>
+                <a href="#portfolio" class="btn">View Projects</a>
             </div>
         </div>
     </section>
+
+    <!-- Services Section -->
     <section id="services" class="services">
         <div class="main-text scroll-scale">
-            <span>What i will do for you</span>
-            <h2>Our Services</h2>
+            <span>What I Offer</span>
+            <h2>My Services</h2>
         </div>
-        <div class="section-services scroll-bottom">
-            <div class="service-box">
-                <i class='bx bx-layer service-icon' ></i>
-                <h3> Full-Stack Web Development</h3>
-                <p>I develop complete, responsive, and high-performing web applications from scratch. From frontend interfaces using HTML, CSS, JavaScript, and frameworks to robust backend systems with Java, Spring Boot, and MySQL, I ensure seamless integration and functionality across the stack.</p>
-                <div class="btn-box service-btn">
-                    <a href="#" class="btn">Read More</a>
-                </div>
-            </div>
-                <div class="service-box">
-                    <i class='bx bx-code-alt service-icon'></i>
-                    <h3>Custom API Development & Integration</h3>
-                    <p>I design and implement RESTful APIs to support scalable and secure web applications. Whether it's creating new endpoints, integrating third-party APIs (payment gateways, email verification, etc.), or optimizing existing APIs, I provide clean, well-documented, and efficient solutions.</p>
-                    <div class="btn-box service-btn">
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                    <div class="service-box">
-                        <i class='bx bx-desktop service-icon'></i>
-                        <h3> UI/UX Design & Frontend Optimization</h3>
-                        <p>I create modern, user-friendly, and responsive interfaces tailored to your brand and audience. Using technologies like HTML, CSS, JavaScript, and frameworks like Bootstrap or Thymeleaf, I build intuitive and aesthetically pleasing web pages with a focus on performance and accessibility.</p>
-                        <div class="btn-box service-btn">
-                            <a href="#" class="btn">Read More</a>
-                        </div>
-                    </div>
+        
+        <div class="service-content scroll-bottom">
+            <article class="box">
+                <i class="bx bx-layer"></i>
+                <h3>Full-Stack Development</h3>
+                <p>Building complete web applications from frontend to backend with modern technologies and best practices.</p>
+                <a href="#contact">Hire Me <i class="bx bx-right-arrow-alt"></i></a>
+            </article>
+            
+            <article class="box">
+                <i class="bx bx-desktop"></i>
+                <h3>Mobile App Development</h3>
+                <p>Creating responsive and user-friendly mobile applications with seamless performance across platforms.</p>
+                <a href="#contact">Hire Me <i class="bx bx-right-arrow-alt"></i></a>
+            </article>
+            
+            <article class="box">
+                <i class="bx bx-joystick"></i>
+                <h3>Game Development</h3>
+                <p>Developing engaging games using Java with focus on gameplay mechanics and user experience.</p>
+                <a href="#contact">Hire Me <i class="bx bx-right-arrow-alt"></i></a>
+            </article>
         </div>
     </section>
+
+    <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="main-text scroll-scale">
-            <span>technical and professional</span>
-            <h2>My Skills</h2>
+            <span>Technical Skills</span>
+            <h2>My Expertise</h2>
         </div>
+        
         <div class="skill-main">
             <div class="skill-left scroll-scale">
                 <h3>Technical Skills</h3>
+                
                 <div class="skill-bar">
                     <div class="info">
-                        <p>JAVA</p>
-                        <p>90%</p>
+                        <p>HTML</p>
+                        <span>72%</span>
                     </div>
                     <div class="bar">
                         <span class="html"></span>
                     </div>
                 </div>
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>HTML</p>
-                        <p>95%</p>
-                    </div>
-                    <div class="bar">
-                        <span class="figma"></span>
-                    </div>
-                </div>
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>Javascript</p>
-                        <p>90%</p>
-                    </div>
-                    <div class="bar">
-                        <span class="javascript"></span>
-                    </div>
-                </div>
+                
                 <div class="skill-bar">
                     <div class="info">
                         <p>CSS</p>
-                        <p>90%</p>
+                        <span>60%</span>
                     </div>
                     <div class="bar">
                         <span class="css"></span>
                     </div>
                 </div>
+                
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>JavaScript</p>
+                        <span>80%</span>
+                    </div>
+                    <div class="bar">
+                        <span class="javascript"></span>
+                    </div>
+                </div>
+                
+                <div class="skill-bar">
+                    <div class="info">
+                        <p>Figma</p>
+                        <span>75%</span>
+                    </div>
+                    <div class="bar">
+                        <span class="figma"></span>
+                    </div>
+                </div>
             </div>
+            
             <div class="skill-right scroll-scale">
                 <h3>Professional Skills</h3>
+                
                 <div class="professional">
                     <div class="box">
                         <div class="circle" data-dots="80" data-percent="90"></div>
                         <div class="text">
-                            <b>90%</b>
+                            <big>90%</big>
                             <small>Team Work</small>
                         </div>
                     </div>
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="80"></div>
-                        <div class="text">
-                            <b>80%</b>
-                            <small>Creativity</small>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="60"></div>
-                        <div class="text">
-                            <b>90%</b>
-                            <small>Project Management</small>
-                        </div>
-                    </div>
+                    
                     <div class="box">
                         <div class="circle" data-dots="80" data-percent="70"></div>
                         <div class="text">
-                            <b>80%</b>
+                            <big>70%</big>
+                            <small>Project Management</small>
+                        </div>
+                    </div>
+                    
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="85"></div>
+                        <div class="text">
+                            <big>85%</big>
+                            <small>Creativity</small>
+                        </div>
+                    </div>
+                    
+                    <div class="box">
+                        <div class="circle" data-dots="80" data-percent="75"></div>
+                        <div class="text">
+                            <big>75%</big>
                             <small>Communication</small>
                         </div>
                     </div>
@@ -235,125 +274,144 @@
             </div>
         </div>
     </section>
+
+    <!-- Experience Section -->
     <section id="experience" class="experience">
         <div class="main-text scroll-scale">
             <span>Professional Experience</span>
             <h2>My Experience</h2>
         </div>
+        
         <div class="experience-main scroll-bottom">
             <div class="experience-content">
-                <div class="experience-box">
+                <article class="experience-box">
                     <h3>Nepal Telecom</h3>
                     <p>Jan 2025 - April 2025</p>
                     <p>Worked on network infrastructure projects, focusing on telecommunications systems and data management.</p>
-                </div>
-                <div class="experience-box">
+                </article>
+                
+                <article class="experience-box">
                     <h3>Auralith Bit</h3>
                     <p>Dec 2025 - Present</p>
                     <p>Serving as Technical Lead, overseeing software development projects, team management, and innovative solutions in full-stack development.</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
-        <section id="portfolio" class="portfolio">
-            <div class="main-text scroll-scale">
-                <span>What i will do for you</span>
-                <h2>Latest Project</h2>
-            </div>
-                 <div class="container">
-                    <div class="fillter-buttons scroll-scale">
-                          <button class="button" data-filter="all">All</button>
-                          <button class="button" data-filter=".product">Games</button>
-                          <button class="button" data-filter=".inter">Web Apps</button>
-                    </div>
-                    <div class="portfolio-gallery scroll-bottom">
-                        <div class="port-box mix product">
-                            <div class="port-image">
-                                <img src="portfolio1.jpg" alt="Image">
-                            </div>
-                            <div class="port-content">
-                                <h3>Typing Speed Game</h3>
-                                <p> A simple Java-based Typing Speed Game developed using Eclipse IDE. The game measures how fast a user can type a given sentence within a limited time.</p>
-                                <a href="#"><i class='bx bx-link-external'></i></a>
-                            </div>
-                        </div>
-                        <div class="port-box mix product">
-                            <div class="port-image">
-                                <img src="portfolio2.jpg" alt="Image">
-                            </div>
-                            <div class="port-content">
-                                <h3>Online Auction System</h3>
-                                <p>A full-stack e-commerce web application that allows users to browse products, add them to cart, place orders, and simulate payments. Admins can manage products, orders, and users via a secure dashboard. Includes email verification and product image uploads.
 
-                                </p>
-                                <a href="#"><i class='bx bx-link-external'></i></a>
-                            </div>
-                        </div>
-                        <div class="port-box mix inter">
-                            <div class="port-image">
-                                <img src="portfolio3.jpg" alt="Image">
-                            </div>
-                            <div class="port-content">
-                                <h3> Online Examination System</h3>
-                                <p>An online examination system where admins can create exams and students can take them in real-time. It includes login functionality, result viewing, and auto-scoring features.</p>
-                                <a href="#"><i class='bx bx-link-external'></i></a>
-                            </div>
-                        </div>
-                        <div class="port-box mix inter">
-                            <div class="port-image">
-                                <img src="portfolio4.jpg" alt="Image">
-                            </div>
-                            <div class="port-content">
-                                <h3> Typing Speed Game Web</h3>
-                                <p>A browser-based typing game that tracks your typing speed in real-time. Designed for practice and fun, with accuracy and WPM display after each session.</p>
-                                <a href="#"><i class='bx bx-link-external'></i></a>
-                            </div>
-                        </div>
-                        <div class="port-box mix inter">
-                            <div class="port-image">
-                                <img src="portfolio5.jpg" alt="Image">
-                            </div>
-                            <div class="port-content">
-                                <h3>Order Management System</h3>
-                                <p>A frontend application for managing orders with features to add, view, update, and delete orders.</p>
-                                <a href="#"><i class='bx bx-link-external'></i></a>
-                            </div>
-                        </div>
-                        <div class="port-box mix inter">
-                            <div class="port-image">
-                                <img src="potrfolio6.jpg" alt="Image">
-                            </div>
-                            <div class="port-content">
-                                <h3>TechShop</h3>
-                                <p>An e-commerce platform for tech products, built with modern web technologies.</p>
-                                <a href="#"><i class='bx bx-link-external'></i></a>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <div class="main-text scroll-scale">
-                <span>Ask me question</span>
-                <h2>Contact Me</h2>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="main-text scroll-scale">
+            <span>What I Will Do for You</span>
+            <h2>Latest Projects</h2>
+        </div>
+        
+        <div class="container">
+            <div class="filter-buttons scroll-scale">
+                <button class="button mixitup-control-active" data-filter="all" aria-label="Show all projects">All</button>
+                <button class="button" data-filter=".product" aria-label="Show games">Games</button>
+                <button class="button" data-filter=".inter" aria-label="Show web apps">Web Apps</button>
             </div>
-            <form action="https://formspree.io/f/xpznqjqy" method="POST" class="scroll-bottom">
-                <input type="text" name="name" placeholder="Your Name">
-                <input type="email" name="email" placeholder="Your Email">
-                <input type="text" name="address" placeholder="Your Address">
-                <input type="number" name="phone" placeholder="Phone Number">
-                <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message"></textarea>
-                <div class="btn-box formBtn">
-                    <button type="submit" class="btn">Send Message</button>
-                </div>
-            </form>
-        </section>
-        <footer>
-            <p class="scroll-scale">Copyright &copy; 2023 by Supriya Dwivedi || All Rights Reserved</p>
-            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
-        </footer>
-    <script src="mixitup.min.js"></script>
+            
+            <div class="portfolio-gallery scroll-bottom">
+                <article class="port-box mix product">
+                    <div class="port-image">
+                        <img src="portfolio1.jpg" alt="Typing Speed Game Project">
+                    </div>
+                    <div class="port-content">
+                        <h3>Typing Speed Game</h3>
+                        <p>A simple Java-based Typing Speed Game developed using Eclipse IDE. The game measures how fast a user can type a given sentence within a limited time.</p>
+                        <a href="#" aria-label="View Typing Speed Game project"><i class="bx bx-link-external"></i></a>
+                    </div>
+                </article>
+                
+                <article class="port-box mix product">
+                    <div class="port-image">
+                        <img src="portfolio2.jpg" alt="Online Auction System Project">
+                    </div>
+                    <div class="port-content">
+                        <h3>Online Auction System</h3>
+                        <p>A full-stack e-commerce web application that allows users to browse products, add them to cart, place orders, and simulate payments. Admins can manage products, orders, and users via a secure dashboard. Includes email verification and product image uploads.</p>
+                        <a href="#" aria-label="View Online Auction System project"><i class="bx bx-link-external"></i></a>
+                    </div>
+                </article>
+                
+                <article class="port-box mix inter">
+                    <div class="port-image">
+                        <img src="portfolio3.jpg" alt="Online Examination System Project">
+                    </div>
+                    <div class="port-content">
+                        <h3>Online Examination System</h3>
+                        <p>An online examination system where admins can create exams and students can take them in real-time. It includes login functionality, result viewing, and auto-scoring features.</p>
+                        <a href="#" aria-label="View Online Examination System project"><i class="bx bx-link-external"></i></a>
+                    </div>
+                </article>
+                
+                <article class="port-box mix inter">
+                    <div class="port-image">
+                        <img src="portfolio4.jpg" alt="Typing Speed Game Web Project">
+                    </div>
+                    <div class="port-content">
+                        <h3>Typing Speed Game Web</h3>
+                        <p>A browser-based typing game that tracks your typing speed in real-time. Designed for practice and fun, with accuracy and WPM display after each session.</p>
+                        <a href="#" aria-label="View Typing Speed Game Web project"><i class="bx bx-link-external"></i></a>
+                    </div>
+                </article>
+                
+                <article class="port-box mix inter">
+                    <div class="port-image">
+                        <img src="portfolio5.jpg" alt="Online Order Management System Project">
+                    </div>
+                    <div class="port-content">
+                        <h3>Online Order Management System</h3>
+                        <p>A frontend application for managing orders with features to add, view, update, and delete orders.</p>
+                        <a href="#" aria-label="View Online Order Management System project"><i class="bx bx-link-external"></i></a>
+                    </div>
+                </article>
+                
+                <article class="port-box mix inter">
+                    <div class="port-image">
+                        <img src="potrfolio6.jpg" alt="TechShop Project">
+                    </div>
+                    <div class="port-content">
+                        <h3>TechShop</h3>
+                        <p>An e-commerce platform for tech products, built with modern web technologies.</p>
+                        <a href="#" aria-label="View TechShop project"><i class="bx bx-link-external"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="main-text scroll-scale">
+            <span>Ask Me Questions</span>
+            <h2>Contact Me</h2>
+        </div>
+        
+        <form action="https://formspree.io/f/xpznqjqy" method="POST" class="scroll-bottom">
+            <input type="text" name="name" placeholder="Your Name" required aria-label="Your name">
+            <input type="email" name="email" placeholder="Your Email" required aria-label="Your email">
+            <input type="text" name="address" placeholder="Your Address" aria-label="Your address">
+            <input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone number">
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message" required aria-label="Your message"></textarea>
+            <div class="btn-box formBtn">
+                <button type="submit" class="btn">Send Message</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="scroll-scale">Copyright &copy; 2023 by Supriya Dwivedi | All Rights Reserved</p>
+        <a href="#home" aria-label="Scroll to top">
+            <i class="bx bx-up-arrow-alt"></i>
+        </a>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="mixitup_min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
