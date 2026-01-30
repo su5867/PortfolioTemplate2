@@ -1,0 +1,4 @@
+- [x] Add CSS for experience section: background, grid layout, neon styling, hover effects, responsive design
+- [x] Update portfolio section: Style filter buttons with neon effects, ensure responsiveness
+- [x] Update about section: Improve responsiveness and add neon styling if needed
+- [x] Test the changes in browser
