@@ -1,20 +1,43 @@
+'use strict';
+
 /**
  * Portfolio Website JavaScript
  * Author: Supriya Dwivedi
- * Description: Main JavaScript file for portfolio website functionality
+ * Enhanced with performance optimizations and error handling
  */
 
-'use strict';
+// ============================================================================
+// PRELOADER
+// ============================================================================
+const initPreloader = () => {
+    const preloader = document.getElementById('preloader');
+    
+    if (!preloader) return;
+    
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+            preloader.style.transition = 'opacity 0.5s ease, visibility 0.5s ease';
+            
+            // Remove from DOM after animation
+            setTimeout(() => {
+                preloader.remove();
+            }, 500);
+        }, 500); // Small delay to ensure everything is loaded
+    });
+};
 
-/* ==========================================================================
-   WORD ROTATION ANIMATION
-   ========================================================================== */
-
-/**
- * Splits text content into individual letter spans for animation
- */
+// ============================================================================
+// TEXT ROTATION ANIMATION
+// ============================================================================
 const initWordRotation = () => {
     const words = document.querySelectorAll('.word');
+    
+    if (words.length === 0) {
+        console.warn('No words found for rotation animation');
+        return;
+    }
     
     words.forEach((word) => {
         const letters = word.textContent.split('');
@@ -29,13 +52,13 @@ const initWordRotation = () => {
     });
 };
 
-/**
- * Handles the rotation animation between words
- */
 const setupWordRotation = () => {
     const words = document.querySelectorAll('.word');
     
-    if (words.length === 0) return;
+    if (words.length === 0) {
+        console.warn('No words available for rotation setup');
+        return;
+    }
     
     let currentWordIndex = 0;
     const maxWordIndex = words.length - 1;
@@ -69,18 +92,19 @@ const setupWordRotation = () => {
     
     // Start animation
     changeText();
-    setInterval(changeText, 3000); // Changed from 1000ms to 3000ms for better readability
+    setInterval(changeText, 3000);
 };
 
-/* ==========================================================================
-   CIRCULAR SKILL INDICATORS
-   ========================================================================== */
-
-/**
- * Creates circular skill progress indicators
- */
+// ============================================================================
+// CIRCULAR SKILLS ANIMATION
+// ============================================================================
 const initCircleSkills = () => {
     const circles = document.querySelectorAll('.circle');
+    
+    if (circles.length === 0) {
+        console.warn('No circle elements found for skills animation');
+        return;
+    }
     
     circles.forEach((elem) => {
         const dots = parseInt(elem.getAttribute('data-dots')) || 80;
@@ -90,49 +114,67 @@ const initCircleSkills = () => {
         
         let points = '';
         
+        // Create all dot points
         for (let i = 0; i < dots; i++) {
             points += `<div class="points" style="--i:${i}; --rot:${rotate}deg"></div>`;
         }
         
         elem.innerHTML = points;
         
-        // Mark the calculated percentage of points
+        // Set CSS variable for conic gradient
+        elem.style.setProperty('--percent', markedPercent);
+        
+        // Mark the calculated percentage of points with delay for animation
         const pointsMarked = elem.querySelectorAll('.points');
         for (let i = 0; i < percent; i++) {
-            pointsMarked[i].classList.add('marked');
+            setTimeout(() => {
+                if (pointsMarked[i]) {
+                    pointsMarked[i].classList.add('marked');
+                }
+            }, i * 20); // Staggered animation
         }
     });
 };
 
-/* ==========================================================================
-   PORTFOLIO FILTERING (MIXITUP)
-   ========================================================================== */
-
-/**
- * Initializes MixItUp portfolio filtering
- */
+// ============================================================================
+// PORTFOLIO FILTERING (MixItUp)
+// ============================================================================
 const initPortfolioFilter = () => {
     const portfolioGallery = document.querySelector('.portfolio-gallery');
     
-    if (portfolioGallery && typeof mixitup === 'function') {
+    if (!portfolioGallery) {
+        console.warn('Portfolio gallery not found');
+        return;
+    }
+    
+    if (typeof mixitup !== 'function') {
+        console.error('MixItUp library not loaded');
+        return;
+    }
+    
+    try {
         mixitup(portfolioGallery, {
             animation: {
                 duration: 500,
                 nudge: true,
                 reverseOut: false,
                 effects: 'fade translateZ(-100px)'
+            },
+            selectors: {
+                target: '.port-box'
+            },
+            load: {
+                filter: 'all'
             }
         });
+    } catch (error) {
+        console.error('Error initializing MixItUp:', error);
     }
 };
 
-/* ==========================================================================
-   ACTIVE MENU HIGHLIGHTING
-   ========================================================================== */
-
-/**
- * Updates active menu item based on scroll position
- */
+// ============================================================================
+// NAVIGATION & MENU
+// ============================================================================
 const updateActiveMenu = () => {
     const menuLinks = document.querySelectorAll('header ul li a');
     const sections = document.querySelectorAll('section');
@@ -140,7 +182,7 @@ const updateActiveMenu = () => {
     if (sections.length === 0) return;
     
     let len = sections.length;
-    const scrollOffset = 97; // Offset for fixed header
+    const scrollOffset = 150; // Increased offset for better section detection
     
     // Find current section
     while (--len && window.scrollY + scrollOffset < sections[len].offsetTop) {}
@@ -153,43 +195,41 @@ const updateActiveMenu = () => {
     }
 };
 
-/* ==========================================================================
-   STICKY HEADER
-   ========================================================================== */
-
-/**
- * Toggles sticky class on header based on scroll position
- */
 const handleStickyHeader = () => {
     const header = document.querySelector('header');
     
-    if (header) {
-        const scrollThreshold = 50;
-        header.classList.toggle('sticky', window.scrollY > scrollThreshold);
+    if (!header) return;
+    
+    const scrollThreshold = 50;
+    
+    if (window.scrollY > scrollThreshold) {
+        header.classList.add('sticky');
+    } else {
+        header.classList.remove('sticky');
     }
 };
 
-/* ==========================================================================
-   MOBILE MENU TOGGLE
-   ========================================================================== */
-
-/**
- * Handles mobile menu open/close functionality
- */
 const setupMobileMenu = () => {
     const menuIcon = document.querySelector('#menu-icon');
     const navlist = document.querySelector('.navlist');
     
-    if (!menuIcon || !navlist) return;
+    if (!menuIcon || !navlist) {
+        console.warn('Mobile menu elements not found');
+        return;
+    }
     
     // Toggle menu on icon click
-    menuIcon.addEventListener('click', () => {
+    menuIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
         menuIcon.classList.toggle('bx-x');
         navlist.classList.toggle('open');
         
-        // Update ARIA attribute
+        // Update ARIA attribute for accessibility
         const isExpanded = navlist.classList.contains('open');
         menuIcon.setAttribute('aria-expanded', isExpanded);
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = isExpanded ? 'hidden' : '';
     });
     
     // Close menu when clicking on nav links
@@ -199,31 +239,38 @@ const setupMobileMenu = () => {
             menuIcon.classList.remove('bx-x');
             navlist.classList.remove('open');
             menuIcon.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
         });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navlist.contains(e.target) && !menuIcon.contains(e.target)) {
+            if (navlist.classList.contains('open')) {
+                menuIcon.classList.remove('bx-x');
+                navlist.classList.remove('open');
+                menuIcon.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        }
     });
 };
 
-/**
- * Closes mobile menu on scroll
- */
 const closeMobileMenuOnScroll = () => {
     const menuIcon = document.querySelector('#menu-icon');
     const navlist = document.querySelector('.navlist');
     
-    if (menuIcon && navlist) {
+    if (menuIcon && navlist && navlist.classList.contains('open')) {
         menuIcon.classList.remove('bx-x');
         navlist.classList.remove('open');
         menuIcon.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
     }
 };
 
-/* ==========================================================================
-   SCROLL ANIMATIONS (INTERSECTION OBSERVER)
-   ========================================================================== */
-
-/**
- * Creates and configures Intersection Observer for scroll animations
- */
+// ============================================================================
+// SCROLL ANIMATIONS
+// ============================================================================
 const setupScrollAnimations = () => {
     const observerOptions = {
         threshold: 0.1,
@@ -234,8 +281,16 @@ const setupScrollAnimations = () => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show-items');
-            } else {
-                entry.target.classList.remove('show-items');
+                
+                // Trigger circle animations when skills section is visible
+                if (entry.target.classList.contains('skills') || 
+                    entry.target.closest('.skills')) {
+                    const circles = entry.target.querySelectorAll('.circle');
+                    if (circles.length > 0 && !entry.target.dataset.animated) {
+                        entry.target.dataset.animated = 'true';
+                        setTimeout(() => initCircleSkills(), 200);
+                    }
+                }
             }
         });
     }, observerOptions);
@@ -244,19 +299,16 @@ const setupScrollAnimations = () => {
     const animatedElements = [
         ...document.querySelectorAll('.scroll-scale'),
         ...document.querySelectorAll('.scroll-bottom'),
-        ...document.querySelectorAll('.scroll-top')
+        ...document.querySelectorAll('.scroll-top'),
+        ...document.querySelectorAll('.skills')
     ];
     
     animatedElements.forEach((element) => observer.observe(element));
 };
 
-/* ==========================================================================
-   SMOOTH SCROLL FOR NAVIGATION LINKS
-   ========================================================================== */
-
-/**
- * Adds smooth scrolling behavior to navigation links
- */
+// ============================================================================
+// SMOOTH SCROLLING
+// ============================================================================
 const setupSmoothScroll = () => {
     const navLinks = document.querySelectorAll('a[href^="#"]');
     
@@ -265,8 +317,15 @@ const setupSmoothScroll = () => {
             const href = link.getAttribute('href');
             
             // Skip if it's just "#"
-            if (href === '#') {
+            if (href === '#' || href === '#home') {
                 e.preventDefault();
+                
+                if (href === '#home') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
                 return;
             }
             
@@ -276,7 +335,8 @@ const setupSmoothScroll = () => {
             if (targetElement) {
                 e.preventDefault();
                 
-                const headerHeight = document.querySelector('header').offsetHeight;
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 80;
                 const targetPosition = targetElement.offsetTop - headerHeight;
                 
                 window.scrollTo({
@@ -288,9 +348,9 @@ const setupSmoothScroll = () => {
     });
 };
 
-/* ==========================================================================
-   PERFORMANCE OPTIMIZATION - THROTTLE FUNCTION
-   ========================================================================== */
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
 
 /**
  * Throttles function execution for better performance
@@ -308,13 +368,23 @@ const throttle = (func, delay = 100) => {
     };
 };
 
-/* ==========================================================================
-   EVENT LISTENERS
-   ========================================================================== */
-
 /**
- * Sets up all scroll event listeners with throttling
+ * Debounces function execution
+ * @param {Function} func - Function to debounce
+ * @param {number} delay - Delay in milliseconds
+ * @returns {Function} - Debounced function
  */
+const debounce = (func, delay = 300) => {
+    let timeoutId;
+    return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func(...args), delay);
+    };
+};
+
+// ============================================================================
+// SCROLL EVENT HANDLERS
+// ============================================================================
 const setupScrollListeners = () => {
     const throttledScrollHandler = throttle(() => {
         updateActiveMenu();
@@ -325,97 +395,233 @@ const setupScrollListeners = () => {
     window.addEventListener('scroll', throttledScrollHandler, { passive: true });
 };
 
-/* ==========================================================================
-   FORM VALIDATION
-   ========================================================================== */
-
-/**
- * Adds form validation to contact form
- */
+// ============================================================================
+// FORM HANDLING
+// ============================================================================
 const setupFormValidation = () => {
     const form = document.querySelector('.contact form');
     
-    if (!form) return;
+    if (!form) {
+        console.warn('Contact form not found');
+        return;
+    }
     
-    form.addEventListener('submit', (e) => {
-        const inputs = form.querySelectorAll('input[required], textarea[required]');
-        let isValid = true;
-        
-        inputs.forEach((input) => {
+    // Real-time validation feedback
+    const inputs = form.querySelectorAll('input[required], textarea[required]');
+    inputs.forEach((input) => {
+        input.addEventListener('blur', () => {
             if (!input.value.trim()) {
-                isValid = false;
                 input.style.borderColor = '#ff4444';
             } else {
                 input.style.borderColor = '';
             }
         });
         
-        if (!isValid) {
-            e.preventDefault();
-            alert('Please fill in all required fields.');
-        }
-    });
-    
-    // Reset border color on input
-    const inputs = form.querySelectorAll('input, textarea');
-    inputs.forEach((input) => {
         input.addEventListener('input', () => {
-            input.style.borderColor = '';
+            if (input.value.trim()) {
+                input.style.borderColor = '';
+            }
         });
     });
+    
+    // Form submission
+    form.addEventListener('submit', (e) => {
+        let isValid = true;
+        const requiredInputs = form.querySelectorAll('input[required], textarea[required]');
+        
+        requiredInputs.forEach((input) => {
+            if (!input.value.trim()) {
+                isValid = false;
+                input.style.borderColor = '#ff4444';
+            }
+        });
+        
+        // Email validation
+        const emailInput = form.querySelector('input[type="email"]');
+        if (emailInput && emailInput.value.trim()) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput.value.trim())) {
+                isValid = false;
+                emailInput.style.borderColor = '#ff4444';
+                alert('Please enter a valid email address.');
+                e.preventDefault();
+                return;
+            }
+        }
+        
+        if (!isValid) {
+            e.preventDefault();
+            alert('Please fill in all required fields correctly.');
+        } else {
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Re-enable after a delay (FormSpree handles the actual submission)
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        }
+    });
 };
 
-/* ==========================================================================
-   INITIALIZATION
-   ========================================================================== */
+// ============================================================================
+// PERFORMANCE OPTIMIZATION
+// ============================================================================
+const optimizeImages = () => {
+    const images = document.querySelectorAll('img');
+    
+    if ('loading' in HTMLImageElement.prototype) {
+        images.forEach((img) => {
+            if (!img.loading) {
+                img.loading = 'lazy';
+            }
+        });
+    }
+};
 
-/**
- * Main initialization function
- * Runs when DOM is fully loaded
- */
+// ============================================================================
+// ERROR HANDLING
+// ============================================================================
+const setupErrorHandling = () => {
+    window.addEventListener('error', (e) => {
+        console.error('Global error:', e.error);
+    });
+    
+    window.addEventListener('unhandledrejection', (e) => {
+        console.error('Unhandled promise rejection:', e.reason);
+    });
+};
+
+// ============================================================================
+// ACCESSIBILITY ENHANCEMENTS
+// ============================================================================
+const setupAccessibility = () => {
+    // Keyboard navigation for mobile menu
+    const menuIcon = document.querySelector('#menu-icon');
+    if (menuIcon) {
+        menuIcon.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                menuIcon.click();
+            }
+        });
+    }
+    
+    // Focus management
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const navlist = document.querySelector('.navlist');
+            const menuIcon = document.querySelector('#menu-icon');
+            
+            if (navlist && navlist.classList.contains('open')) {
+                menuIcon.classList.remove('bx-x');
+                navlist.classList.remove('open');
+                menuIcon.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+};
+
+// ============================================================================
+// SKILL BARS ANIMATION
+// ============================================================================
+const animateSkillBars = () => {
+    const skillSection = document.querySelector('.skills');
+    
+    if (!skillSection) return;
+    
+    const observerOptions = {
+        threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting && !entry.target.dataset.animated) {
+                entry.target.dataset.animated = 'true';
+                
+                // Trigger skill bar animations
+                const skillBars = entry.target.querySelectorAll('.skill-bar .bar span');
+                skillBars.forEach((bar, index) => {
+                    setTimeout(() => {
+                        bar.style.animationPlayState = 'running';
+                    }, index * 200);
+                });
+            }
+        });
+    }, observerOptions);
+    
+    observer.observe(skillSection);
+};
+
+// ============================================================================
+// INITIALIZATION
+// ============================================================================
 const init = () => {
-    // Text animations
-    initWordRotation();
-    setupWordRotation();
-    
-    // Skills
-    initCircleSkills();
-    
-    // Portfolio filtering
-    initPortfolioFilter();
-    
-    // Navigation
-    setupMobileMenu();
-    setupSmoothScroll();
-    updateActiveMenu();
-    
-    // Scroll effects
-    handleStickyHeader();
-    setupScrollAnimations();
-    setupScrollListeners();
-    
-    // Form
-    setupFormValidation();
-    
-    console.log('Portfolio initialized successfully! 🚀');
+    try {
+        console.log('🚀 Initializing portfolio...');
+        
+        // Preloader (must be first)
+        initPreloader();
+        
+        // Core functionality
+        initWordRotation();
+        setupWordRotation();
+        
+        // Skills animations
+        animateSkillBars();
+        // Note: Circle skills will be initialized when section becomes visible
+        
+        // Portfolio filtering
+        initPortfolioFilter();
+        
+        // Navigation
+        setupMobileMenu();
+        setupSmoothScroll();
+        updateActiveMenu();
+        
+        // Scroll effects
+        handleStickyHeader();
+        setupScrollAnimations();
+        setupScrollListeners();
+        
+        // Form
+        setupFormValidation();
+        
+        // Performance
+        optimizeImages();
+        
+        // Accessibility
+        setupAccessibility();
+        
+        // Error handling
+        setupErrorHandling();
+        
+        console.log('✅ Portfolio initialized successfully!');
+        
+    } catch (error) {
+        console.error('❌ Error during initialization:', error);
+    }
 };
 
-/* ==========================================================================
-   LOAD EVENT
-   ========================================================================== */
-
-// Initialize when DOM is ready
+// ============================================================================
+// DOM READY
+// ============================================================================
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
     init();
 }
 
-/* ==========================================================================
-   EXPORTS (for potential module usage)
-   ========================================================================== */
-
-// Export functions for potential reuse
+// ============================================================================
+// EXPORTS (for module usage)
+// ============================================================================
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         initWordRotation,
@@ -426,6 +632,9 @@ if (typeof module !== 'undefined' && module.exports) {
         handleStickyHeader,
         setupMobileMenu,
         setupScrollAnimations,
-        throttle
+        setupSmoothScroll,
+        setupFormValidation,
+        throttle,
+        debounce
     };
 }
