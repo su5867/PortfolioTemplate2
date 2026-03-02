@@ -3,108 +3,84 @@
 /**
  * Portfolio Website JavaScript
  * Author: Supriya Dwivedi
- * Enhanced with performance optimizations and error handling
+ * Enhanced with optimized animations and performance improvements
  */
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
+
+const throttle = (func, limit = 50) => {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+};
+
+const debounce = (func, delay = 150) => {
+    let timeoutId;
+    return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func(...args), delay);
+    };
+};
 
 // ============================================================================
 // PRELOADER
 // ============================================================================
+
 const initPreloader = () => {
     const preloader = document.getElementById('preloader');
-    
     if (!preloader) return;
     
     window.addEventListener('load', () => {
         setTimeout(() => {
             preloader.style.opacity = '0';
             preloader.style.visibility = 'hidden';
-            preloader.style.transition = 'opacity 0.5s ease, visibility 0.5s ease';
-            
-            // Remove from DOM after animation
-            setTimeout(() => {
-                preloader.remove();
-            }, 500);
-        }, 500); // Small delay to ensure everything is loaded
+            setTimeout(() => preloader.remove(), 300);
+        }, 300);
     });
 };
 
 // ============================================================================
-// TEXT ROTATION ANIMATION
+// TEXT ROTATION ANIMATION (Optimized)
 // ============================================================================
+
 const initWordRotation = () => {
     const words = document.querySelectorAll('.word');
+    if (words.length === 0) return;
     
-    if (words.length === 0) {
-        console.warn('No words found for rotation animation');
-        return;
-    }
+    let currentIndex = 0;
     
-    words.forEach((word) => {
-        const letters = word.textContent.split('');
-        word.textContent = '';
+    // Initialize first word
+    words[0].classList.add('active');
+    
+    const rotateWords = () => {
+        // Remove active class from current word
+        words[currentIndex].classList.remove('active');
         
-        letters.forEach((letter) => {
-            const span = document.createElement('span');
-            span.textContent = letter;
-            span.className = 'letter';
-            word.appendChild(span);
-        });
-    });
-};
-
-const setupWordRotation = () => {
-    const words = document.querySelectorAll('.word');
-    
-    if (words.length === 0) {
-        console.warn('No words available for rotation setup');
-        return;
-    }
-    
-    let currentWordIndex = 0;
-    const maxWordIndex = words.length - 1;
-    
-    // Show first word
-    words[currentWordIndex].style.opacity = '1';
-    
-    const changeText = () => {
-        const currentWord = words[currentWordIndex];
-        const nextWord = currentWordIndex === maxWordIndex ? words[0] : words[currentWordIndex + 1];
+        // Move to next word
+        currentIndex = (currentIndex + 1) % words.length;
         
-        // Animate out current word
-        Array.from(currentWord.children).forEach((letter, i) => {
-            setTimeout(() => {
-                letter.className = 'letter out';
-            }, i * 80);
-        });
-        
-        // Animate in next word
-        nextWord.style.opacity = '1';
-        Array.from(nextWord.children).forEach((letter, i) => {
-            letter.className = 'letter behind';
-            setTimeout(() => {
-                letter.className = 'letter in';
-            }, 340 + i * 80);
-        });
-        
-        // Update index
-        currentWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
+        // Add active class to new word
+        words[currentIndex].classList.add('active');
     };
     
-    // Start animation
-    changeText();
-    setInterval(changeText, 3000);
+    // Rotate every 2.5 seconds
+    setInterval(rotateWords, 2500);
 };
 
 // ============================================================================
-// CIRCULAR SKILLS ANIMATION
+// CIRCLE SKILLS ANIMATION (Optimized)
 // ============================================================================
+
 const initCircleSkills = () => {
     const circles = document.querySelectorAll('.circle');
-    
-    if (circles.length === 0) {
-        console.warn('No circle elements found for skills animation');
-        return;
-    }
+    if (circles.length === 0) return;
     
     circles.forEach((elem) => {
         const dots = parseInt(elem.getAttribute('data-dots')) || 80;
@@ -113,59 +89,44 @@ const initCircleSkills = () => {
         const rotate = 360 / dots;
         
         let points = '';
-        
-        // Create all dot points
         for (let i = 0; i < dots; i++) {
             points += `<div class="points" style="--i:${i}; --rot:${rotate}deg"></div>`;
         }
         
         elem.innerHTML = points;
-        
-        // Set CSS variable for conic gradient
         elem.style.setProperty('--percent', markedPercent);
         
-        // Mark the calculated percentage of points with delay for animation
+        // Mark points with a small delay for visual effect
         const pointsMarked = elem.querySelectorAll('.points');
-        for (let i = 0; i < percent; i++) {
-            setTimeout(() => {
-                if (pointsMarked[i]) {
-                    pointsMarked[i].classList.add('marked');
-                }
-            }, i * 20); // Staggered animation
-        }
+        requestAnimationFrame(() => {
+            for (let i = 0; i < percent; i++) {
+                setTimeout(() => {
+                    if (pointsMarked[i]) {
+                        pointsMarked[i].classList.add('marked');
+                    }
+                }, i * 10); // Faster staggered animation
+            }
+        });
     });
 };
 
 // ============================================================================
-// PORTFOLIO FILTERING (MixItUp)
+// PROJECTS FILTERING (MixItUp)
 // ============================================================================
-const initPortfolioFilter = () => {
-    const portfolioGallery = document.querySelector('.portfolio-gallery');
-    
-    if (!portfolioGallery) {
-        console.warn('Portfolio gallery not found');
-        return;
-    }
-    
-    if (typeof mixitup !== 'function') {
-        console.error('MixItUp library not loaded');
-        return;
-    }
+
+const initProjectsFilter = () => {
+    const projectsGallery = document.querySelector('.projects-gallery');
+    if (!projectsGallery || typeof mixitup !== 'function') return;
     
     try {
-        mixitup(portfolioGallery, {
+        mixitup(projectsGallery, {
             animation: {
-                duration: 500,
-                nudge: true,
-                reverseOut: false,
-                effects: 'fade translateZ(-100px)'
+                duration: 300,
+                effects: 'fade translateZ(-100px)',
+                nudge: false
             },
-            selectors: {
-                target: '.port-box'
-            },
-            load: {
-                filter: 'all'
-            }
+            selectors: { target: '.project-box' },
+            load: { filter: 'all' }
         });
     } catch (error) {
         console.error('Error initializing MixItUp:', error);
@@ -175,172 +136,131 @@ const initPortfolioFilter = () => {
 // ============================================================================
 // NAVIGATION & MENU
 // ============================================================================
-const updateActiveMenu = () => {
-    const menuLinks = document.querySelectorAll('header ul li a');
+
+let currentSection = 'home';
+
+const updateActiveMenu = throttle(() => {
     const sections = document.querySelectorAll('section');
-    
+    const navLinks = document.querySelectorAll('header ul li a');
     if (sections.length === 0) return;
     
-    let len = sections.length;
-    const scrollOffset = 150; // Increased offset for better section detection
+    let scrollPosition = window.scrollY + 100;
     
-    // Find current section
-    while (--len && window.scrollY + scrollOffset < sections[len].offsetTop) {}
-    
-    // Update active class
-    menuLinks.forEach((link) => link.classList.remove('active'));
-    
-    if (menuLinks[len]) {
-        menuLinks[len].classList.add('active');
-    }
-};
+    sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            if (currentSection !== section.id) {
+                currentSection = section.id;
+                
+                navLinks.forEach(link => link.classList.remove('active'));
+                const activeLink = document.querySelector(`header ul li a[href="#${section.id}"]`);
+                if (activeLink) activeLink.classList.add('active');
+            }
+        }
+    });
+}, 50);
 
-const handleStickyHeader = () => {
+const handleStickyHeader = throttle(() => {
     const header = document.querySelector('header');
-    
     if (!header) return;
     
-    const scrollThreshold = 50;
-    
-    if (window.scrollY > scrollThreshold) {
+    if (window.scrollY > 50) {
         header.classList.add('sticky');
     } else {
         header.classList.remove('sticky');
     }
-};
+}, 50);
 
 const setupMobileMenu = () => {
     const menuIcon = document.querySelector('#menu-icon');
     const navlist = document.querySelector('.navlist');
+    if (!menuIcon || !navlist) return;
     
-    if (!menuIcon || !navlist) {
-        console.warn('Mobile menu elements not found');
-        return;
-    }
-    
-    // Toggle menu on icon click
     menuIcon.addEventListener('click', (e) => {
         e.stopPropagation();
-        menuIcon.classList.toggle('bx-x');
-        navlist.classList.toggle('open');
-        
-        // Update ARIA attribute for accessibility
-        const isExpanded = navlist.classList.contains('open');
-        menuIcon.setAttribute('aria-expanded', isExpanded);
-        
-        // Prevent body scroll when menu is open
-        document.body.style.overflow = isExpanded ? 'hidden' : '';
+        const isOpen = navlist.classList.toggle('open');
+        menuIcon.classList.toggle('bx-x', isOpen);
+        menuIcon.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
     });
     
-    // Close menu when clicking on nav links
-    const navLinks = navlist.querySelectorAll('a');
-    navLinks.forEach((link) => {
+    // Close menu on link click
+    navlist.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            menuIcon.classList.remove('bx-x');
             navlist.classList.remove('open');
+            menuIcon.classList.remove('bx-x');
             menuIcon.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         });
     });
     
-    // Close menu when clicking outside
+    // Close on click outside
     document.addEventListener('click', (e) => {
-        if (!navlist.contains(e.target) && !menuIcon.contains(e.target)) {
-            if (navlist.classList.contains('open')) {
-                menuIcon.classList.remove('bx-x');
-                navlist.classList.remove('open');
-                menuIcon.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
+        if (!navlist.contains(e.target) && !menuIcon.contains(e.target) && navlist.classList.contains('open')) {
+            navlist.classList.remove('open');
+            menuIcon.classList.remove('bx-x');
+            menuIcon.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
         }
     });
 };
 
-const closeMobileMenuOnScroll = () => {
-    const menuIcon = document.querySelector('#menu-icon');
-    const navlist = document.querySelector('.navlist');
-    
-    if (menuIcon && navlist && navlist.classList.contains('open')) {
-        menuIcon.classList.remove('bx-x');
-        navlist.classList.remove('open');
-        menuIcon.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }
-};
+// ============================================================================
+// SCROLL ANIMATIONS (Optimized with Intersection Observer)
+// ============================================================================
 
-// ============================================================================
-// SCROLL ANIMATIONS
-// ============================================================================
 const setupScrollAnimations = () => {
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: '0px 0px -50px 0px'
     };
     
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show-items');
                 
-                // Trigger circle animations when skills section is visible
-                if (entry.target.classList.contains('skills') || 
-                    entry.target.closest('.skills')) {
-                    const circles = entry.target.querySelectorAll('.circle');
-                    if (circles.length > 0 && !entry.target.dataset.animated) {
-                        entry.target.dataset.animated = 'true';
-                        setTimeout(() => initCircleSkills(), 200);
-                    }
+                // Trigger circle skills animation when skills section becomes visible
+                if (entry.target.classList.contains('skills')) {
+                    initCircleSkills();
+                    
+                    // Trigger skill bar animations
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, 200);
                 }
             }
         });
     }, observerOptions);
     
     // Observe all animated elements
-    const animatedElements = [
-        ...document.querySelectorAll('.scroll-scale'),
-        ...document.querySelectorAll('.scroll-bottom'),
-        ...document.querySelectorAll('.scroll-top'),
-        ...document.querySelectorAll('.skills')
-    ];
-    
-    animatedElements.forEach((element) => observer.observe(element));
+    document.querySelectorAll('.scroll-scale, .scroll-bottom, .scroll-top, .skills').forEach(el => {
+        observer.observe(el);
+    });
 };
 
 // ============================================================================
 // SMOOTH SCROLLING
 // ============================================================================
+
 const setupSmoothScroll = () => {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    
-    navLinks.forEach((link) => {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
-            
-            // Skip if it's just "#"
-            if (href === '#' || href === '#home') {
+            if (href === '#') {
                 e.preventDefault();
-                
-                if (href === '#home') {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 return;
             }
             
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
-            
+            const targetElement = document.getElementById(href.substring(1));
             if (targetElement) {
                 e.preventDefault();
-                
-                const header = document.querySelector('header');
-                const headerHeight = header ? header.offsetHeight : 80;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-                
+                const headerHeight = document.querySelector('header')?.offsetHeight || 80;
                 window.scrollTo({
-                    top: targetPosition,
+                    top: targetElement.offsetTop - headerHeight,
                     behavior: 'smooth'
                 });
             }
@@ -349,77 +269,29 @@ const setupSmoothScroll = () => {
 };
 
 // ============================================================================
-// UTILITY FUNCTIONS
-// ============================================================================
-
-/**
- * Throttles function execution for better performance
- * @param {Function} func - Function to throttle
- * @param {number} delay - Delay in milliseconds
- * @returns {Function} - Throttled function
- */
-const throttle = (func, delay = 100) => {
-    let lastCall = 0;
-    return (...args) => {
-        const now = new Date().getTime();
-        if (now - lastCall < delay) return;
-        lastCall = now;
-        return func(...args);
-    };
-};
-
-/**
- * Debounces function execution
- * @param {Function} func - Function to debounce
- * @param {number} delay - Delay in milliseconds
- * @returns {Function} - Debounced function
- */
-const debounce = (func, delay = 300) => {
-    let timeoutId;
-    return (...args) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => func(...args), delay);
-    };
-};
-
-// ============================================================================
-// SCROLL EVENT HANDLERS
-// ============================================================================
-const setupScrollListeners = () => {
-    const throttledScrollHandler = throttle(() => {
-        updateActiveMenu();
-        handleStickyHeader();
-        closeMobileMenuOnScroll();
-    }, 100);
-    
-    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
-};
-
-// ============================================================================
 // FORM HANDLING
 // ============================================================================
+
 const setupFormValidation = () => {
     const form = document.querySelector('.contact form');
+    if (!form) return;
     
-    if (!form) {
-        console.warn('Contact form not found');
-        return;
-    }
-    
-    // Real-time validation feedback
-    const inputs = form.querySelectorAll('input[required], textarea[required]');
-    inputs.forEach((input) => {
+    // Real-time validation
+    form.querySelectorAll('input[required], textarea[required]').forEach(input => {
         input.addEventListener('blur', () => {
             if (!input.value.trim()) {
-                input.style.borderColor = '#ff4444';
+                input.classList.add('error');
+                input.classList.remove('valid');
             } else {
-                input.style.borderColor = '';
+                input.classList.remove('error');
+                input.classList.add('valid');
             }
         });
         
         input.addEventListener('input', () => {
             if (input.value.trim()) {
-                input.style.borderColor = '';
+                input.classList.remove('error');
+                input.classList.add('valid');
             }
         });
     });
@@ -429,10 +301,10 @@ const setupFormValidation = () => {
         let isValid = true;
         const requiredInputs = form.querySelectorAll('input[required], textarea[required]');
         
-        requiredInputs.forEach((input) => {
+        requiredInputs.forEach(input => {
             if (!input.value.trim()) {
                 isValid = false;
-                input.style.borderColor = '#ff4444';
+                input.classList.add('error');
             }
         });
         
@@ -442,7 +314,7 @@ const setupFormValidation = () => {
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(emailInput.value.trim())) {
                 isValid = false;
-                emailInput.style.borderColor = '#ff4444';
+                emailInput.classList.add('error');
                 alert('Please enter a valid email address.');
                 e.preventDefault();
                 return;
@@ -453,16 +325,12 @@ const setupFormValidation = () => {
             e.preventDefault();
             alert('Please fill in all required fields correctly.');
         } else {
-            // Show loading state
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
-                const originalText = submitBtn.textContent;
                 submitBtn.textContent = 'Sending...';
                 submitBtn.disabled = true;
-                
-                // Re-enable after a delay (FormSpree handles the actual submission)
                 setTimeout(() => {
-                    submitBtn.textContent = originalText;
+                    submitBtn.textContent = 'Send Message';
                     submitBtn.disabled = false;
                 }, 3000);
             }
@@ -471,170 +339,53 @@ const setupFormValidation = () => {
 };
 
 // ============================================================================
-// PERFORMANCE OPTIMIZATION
+// PERFORMANCE OPTIMIZATIONS
 // ============================================================================
+
 const optimizeImages = () => {
-    const images = document.querySelectorAll('img');
-    
     if ('loading' in HTMLImageElement.prototype) {
-        images.forEach((img) => {
-            if (!img.loading) {
-                img.loading = 'lazy';
-            }
+        document.querySelectorAll('img:not([loading])').forEach(img => {
+            img.loading = 'lazy';
         });
     }
 };
 
-// ============================================================================
-// ERROR HANDLING
-// ============================================================================
-const setupErrorHandling = () => {
-    window.addEventListener('error', (e) => {
-        console.error('Global error:', e.error);
-    });
+const setupScrollListeners = () => {
+    const scrollHandler = throttle(() => {
+        updateActiveMenu();
+        handleStickyHeader();
+    }, 50);
     
-    window.addEventListener('unhandledrejection', (e) => {
-        console.error('Unhandled promise rejection:', e.reason);
-    });
-};
-
-// ============================================================================
-// ACCESSIBILITY ENHANCEMENTS
-// ============================================================================
-const setupAccessibility = () => {
-    // Keyboard navigation for mobile menu
-    const menuIcon = document.querySelector('#menu-icon');
-    if (menuIcon) {
-        menuIcon.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                menuIcon.click();
-            }
-        });
-    }
-    
-    // Focus management
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            const navlist = document.querySelector('.navlist');
-            const menuIcon = document.querySelector('#menu-icon');
-            
-            if (navlist && navlist.classList.contains('open')) {
-                menuIcon.classList.remove('bx-x');
-                navlist.classList.remove('open');
-                menuIcon.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-        }
-    });
-};
-
-// ============================================================================
-// SKILL BARS ANIMATION
-// ============================================================================
-const animateSkillBars = () => {
-    const skillSection = document.querySelector('.skills');
-    
-    if (!skillSection) return;
-    
-    const observerOptions = {
-        threshold: 0.5
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting && !entry.target.dataset.animated) {
-                entry.target.dataset.animated = 'true';
-                
-                // Trigger skill bar animations
-                const skillBars = entry.target.querySelectorAll('.skill-bar .bar span');
-                skillBars.forEach((bar, index) => {
-                    setTimeout(() => {
-                        bar.style.animationPlayState = 'running';
-                    }, index * 200);
-                });
-            }
-        });
-    }, observerOptions);
-    
-    observer.observe(skillSection);
+    window.addEventListener('scroll', scrollHandler, { passive: true });
 };
 
 // ============================================================================
 // INITIALIZATION
 // ============================================================================
+
 const init = () => {
-    try {
-        console.log('🚀 Initializing portfolio...');
-        
-        // Preloader (must be first)
-        initPreloader();
-        
-        // Core functionality
-        initWordRotation();
-        setupWordRotation();
-        
-        // Skills animations
-        animateSkillBars();
-        // Note: Circle skills will be initialized when section becomes visible
-        
-        // Portfolio filtering
-        initPortfolioFilter();
-        
-        // Navigation
-        setupMobileMenu();
-        setupSmoothScroll();
-        updateActiveMenu();
-        
-        // Scroll effects
-        handleStickyHeader();
-        setupScrollAnimations();
-        setupScrollListeners();
-        
-        // Form
-        setupFormValidation();
-        
-        // Performance
-        optimizeImages();
-        
-        // Accessibility
-        setupAccessibility();
-        
-        // Error handling
-        setupErrorHandling();
-        
-        console.log('✅ Portfolio initialized successfully!');
-        
-    } catch (error) {
-        console.error('❌ Error during initialization:', error);
-    }
+    console.log('Initializing portfolio...');
+    
+    initPreloader();
+    initWordRotation();
+    initProjectsFilter();
+    setupMobileMenu();
+    setupSmoothScroll();
+    setupScrollAnimations();
+    setupFormValidation();
+    optimizeImages();
+    setupScrollListeners();
+    
+    // Initial updates
+    updateActiveMenu();
+    handleStickyHeader();
+    
+    console.log('Portfolio initialized successfully!');
 };
 
-// ============================================================================
-// DOM READY
-// ============================================================================
+// Start when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
     init();
-}
-
-// ============================================================================
-// EXPORTS (for module usage)
-// ============================================================================
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        initWordRotation,
-        setupWordRotation,
-        initCircleSkills,
-        initPortfolioFilter,
-        updateActiveMenu,
-        handleStickyHeader,
-        setupMobileMenu,
-        setupScrollAnimations,
-        setupSmoothScroll,
-        setupFormValidation,
-        throttle,
-        debounce
-    };
 }
