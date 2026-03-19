@@ -6,383 +6,560 @@
     <meta name="description" content="Supriya Dwivedi - Full-Stack Developer specializing in mobile app development and game development with Java">
     <meta name="keywords" content="Full-Stack Developer, Game Developer, App Developer, Java, Spring Boot, Web Development">
     <meta name="author" content="Supriya Dwivedi">
+    <meta name="theme-color" content="#1769ff">
     
     <title>Supriya Dwivedi | Full-Stack Developer Portfolio</title>
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
     
-    <!-- Preconnect for performance -->
+    <!-- Google Fonts - Behance-inspired typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
-        <div class="loader"></div>
+        <div class="loader-wrapper">
+            <div class="loader"></div>
+            <span class="loader-text">Loading...</span>
+        </div>
     </div>
 
-    <!-- Header / Navigation -->
-    <header>
-        <div class="logo" aria-label="Supriya Dwivedi">
-            <span>S</span>upriya.
-        </div>
-        
-        <nav>
-            <ul class="navlist" role="menubar">
-                <li role="none"><a href="#home" role="menuitem" style="--i:1" aria-label="Navigate to Home">Home</a></li>
-                <li role="none"><a href="#about" role="menuitem" style="--i:2" aria-label="Navigate to About">About</a></li>
-                <li role="none"><a href="#services" role="menuitem" style="--i:3" aria-label="Navigate to Services">Services</a></li>
-                <li role="none"><a href="#skills" role="menuitem" style="--i:4" aria-label="Navigate to Skills">Skills</a></li>
-                <li role="none"><a href="#experience" role="menuitem" style="--i:5" aria-label="Navigate to Experience">Experience</a></li>
-                <li role="none"><a href="#projects" role="menuitem" style="--i:6" aria-label="Navigate to Projects">Projects</a></li>
-                <li role="none"><a href="#contact" role="menuitem" style="--i:7" aria-label="Navigate to Contact">Contact</a></li>
-            </ul>
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#home" class="nav__logo">
+                <span class="logo-text">Supriya</span>
+                <span class="logo-dot">.</span>
+            </a>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                    <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
+                    <li class="nav__item"><a href="#projects" class="nav__link">Work</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+                <div class="nav__close" id="nav-close">
+                    <i class="bx bx-x"></i>
+                </div>
+            </div>
+            
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="bx bx-menu"></i>
+            </div>
         </nav>
-        
-        <button id="menu-icon" class="bx bx-menu" aria-label="Toggle navigation menu" aria-expanded="false"></button>
     </header>
 
-    <!-- Home Section -->
-    <section id="home" class="home">
-        <div class="home-content scroll-scale">
-            <h1>Hi! I'm Supriya Dwivedi</h1>
-            
-            <div class="change-text">
-                <h3>And I'm</h3>
-                <h3 aria-live="polite">
-                    <span class="word">Full-Stack Developer</span>
-                    <span class="word">Game Developer</span>
-                    <span class="word">App Developer</span>
-                </h3>
-            </div>
-            
-            <p>Full-Stack Developer specializing in mobile app development and building games with Java. Passionate about creating innovative solutions across platforms.</p>
-
-            <div class="info-box">
-                <div class="email-info">
-                    <h5>Email:</h5>
-                    <span><a href="mailto:me.supriya07@gmail.com">me.supriya07@gmail.com</a></span>
-                </div>
-            </div>
-
-            <div class="btn-box">
-                <a href="Supriya Dwivedi - Resume.pdf" class="btn" download aria-label="Download CV">Download CV</a>
-                <a href="#contact" class="btn" aria-label="Hire me now">Hire Me Now!</a>
-            </div>
-            
-            <div class="social-icons">
-                <a href="https://linkedin.com/in/supriya-dwivedi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                    <i class="bx bxl-linkedin"></i>
-                </a>
-                <a href="https://github.com/su5867" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-                    <i class="bx bxl-github"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="home-image scroll-scale">
-            <div class="img-box">
-                <img src="img1.jpg" alt="Supriya Dwivedi - Full-Stack Developer">
-            </div>
-            <div class="liquid-shape" aria-hidden="true">
-                <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" width="100%" id="blobSvg">
-                    <path fill="#12f7ff" opacity="0.6">
-                        <animate attributeName="d"
-                        dur="10000ms"
-                        repeatCount="indefinite"
-                        values="
-                        M450,308.5Q452,367,396.5,387.5Q341,408,295.5,454Q250,500,205.5,452.5Q161,405,117.5,378.5Q74,352,83.5,301Q93,250,92.5,204.5Q92,159,126.5,127Q161,95,205.5,71Q250,47,290,79.5Q330,112,378,130.5Q426,149,437,199.5Q448,250,450,308.5Z;
-                        M400,290.5Q391,331,361,361Q331,391,290.5,444Q250,497,210,442.5Q170,388,118.5,372Q67,356,38,303Q9,250,30.5,193Q52,136,104.5,112Q157,88,203.5,57Q250,26,291.5,66Q333,106,377.5,128Q422,150,415.5,200Q409,250,400,290.5Z;
-                        M448,304Q437,358,398.5,399Q360,440,305,462Q250,484,209,438Q168,392,143.5,358.5Q119,325,68.5,287.5Q18,250,66.5,211Q115,172,145,146Q175,120,212.5,95.5Q250,71,297,79Q344,87,387.5,116Q431,145,445,197.5Q459,250,448,304Z;
-                        M450,308.5Q452,367,396.5,387.5Q341,408,295.5,454Q250,500,205.5,452.5Q161,405,117.5,378.5Q74,352,83.5,301Q93,250,92.5,204.5Q92,159,126.5,127Q161,95,205.5,71Q250,47,290,79.5Q330,112,378,130.5Q426,149,437,199.5Q448,250,450,308.5Z;
-                        "></animate>
-                    </path>
-                </svg>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="img-about scroll-scale">
-            <img src="img10.jpg" alt="Supriya Dwivedi - About Me">
-        </div>
-        
-        <div class="about-content scroll-scale">
-            <span>Let Me Introduce Myself</span>
-            <h2>About Me</h2>
-            <h3>A Story of Excellence</h3>
-            <p>I'm a passionate Full-Stack Developer specializing in mobile app development and building games with Java. I have a strong foundation in full-stack web development, holding a BSC.CSIT degree. I enjoy building responsive, user-friendly applications and constantly strive to improve my skills through hands-on projects. My experience includes working with technologies like Java, Spring Boot, MySQL, JavaScript, HTML/CSS, and Git. I'm always eager to take on new challenges and contribute to impactful digital solutions across platforms.</p>
-            
-            <div class="btn-box">
-                <a href="#contact" class="btn">Talk with Me</a>
-                <a href="#projects" class="btn">View Projects</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="main-text scroll-scale">
-            <span>What I Offer</span>
-            <h2>My Services</h2>
-        </div>
-        
-        <div class="service-content scroll-bottom">
-            <article class="box">
-                <i class="bx bx-layer"></i>
-                <h3>Full-Stack Development</h3>
-                <p>Building complete web applications from frontend to backend with modern technologies and best practices.</p>
-                <a href="#contact">Hire Me <i class="bx bx-right-arrow-alt"></i></a>
-            </article>
-            
-            <article class="box">
-                <i class="bx bx-desktop"></i>
-                <h3>Mobile App Development</h3>
-                <p>Creating responsive and user-friendly mobile applications with seamless performance across platforms.</p>
-                <a href="#contact">Hire Me <i class="bx bx-right-arrow-alt"></i></a>
-            </article>
-            
-            <article class="box">
-                <i class="bx bx-joystick"></i>
-                <h3>Game Development</h3>
-                <p>Developing engaging games using Java with focus on gameplay mechanics and user experience.</p>
-                <a href="#contact">Hire Me <i class="bx bx-right-arrow-alt"></i></a>
-            </article>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="main-text scroll-scale">
-            <span>Technical Skills</span>
-            <h2>My Expertise</h2>
-        </div>
-        
-        <div class="skill-main">
-            <div class="skill-left scroll-scale">
-                <h3>Technical Skills</h3>
-                
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>HTML</p>
-                        <span>90%</span>
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero section" id="home">
+            <div class="hero__container container">
+                <div class="hero__content">
+                    <span class="hero__subtitle">Hello, I'm</span>
+                    <h1 class="hero__title">Supriya Dwivedi</h1>
+                    <div class="hero__typing">
+                        <span class="typed-text"></span>
+                        <span class="cursor">|</span>
                     </div>
-                    <div class="bar">
-                        <span class="html"></span>
-                    </div>
-                </div>
-                
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>CSS</p>
-                        <span>90%</span>
-                    </div>
-                    <div class="bar">
-                        <span class="css"></span>
-                    </div>
-                </div>
-                
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>JavaScript</p>
-                        <span>90%</span>
-                    </div>
-                    <div class="bar">
-                        <span class="javascript"></span>
-                    </div>
-                </div>
-                
-                <div class="skill-bar">
-                    <div class="info">
-                        <p>Java</p>
-                        <span>90%</span>
-                    </div>
-                    <div class="bar">
-                        <span class="java"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skill-right scroll-scale">
-                <h3>Professional Skills</h3>
-                
-                <div class="professional">
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="90"></div>
-                        <div class="text">
-                            <big>90%</big>
-                            <small>Team Work</small>
+                    <p class="hero__description">
+                        Full-Stack Developer specializing in mobile app development and building games with Java. 
+                        Passionate about creating innovative solutions across platforms.
+                    </p>
+                    
+                    <div class="hero__info">
+                        <div class="info-item">
+                            <i class="bx bx-envelope"></i>
+                            <span>me.supriya07@gmail.com</span>
                         </div>
                     </div>
                     
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="70"></div>
-                        <div class="text">
-                            <big>70%</big>
-                            <small>Project Management</small>
-                        </div>
+                    <div class="hero__buttons">
+                        <a href="Supriya Dwivedi - Resume.pdf" class="btn btn--primary" download>
+                            <i class="bx bx-download"></i>
+                            Download CV
+                        </a>
+                        <a href="#projects" class="btn btn--outline">
+                            View Work
+                            <i class="bx bx-arrow-right"></i>
+                        </a>
                     </div>
                     
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="85"></div>
-                        <div class="text">
-                            <big>85%</big>
-                            <small>Creativity</small>
-                        </div>
+                    <div class="hero__social">
+                        <a href="https://linkedin.com/in/supriya-dwivedi" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="bx bxl-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/su5867" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="bx bxl-github"></i>
+                        </a>
                     </div>
-                    
-                    <div class="box">
-                        <div class="circle" data-dots="80" data-percent="75"></div>
-                        <div class="text">
-                            <big>75%</big>
-                            <small>Communication</small>
+                </div>
+                
+                <div class="hero__image">
+                    <div class="image-wrapper">
+                        <img src="img1.jpg" alt="Supriya Dwivedi" class="hero-img">
+                        <div class="image-shape"></div>
+                        <div class="experience-badge">
+                            <span class="badge-number">2+</span>
+                            <span class="badge-text">Years<br>Experience</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="main-text scroll-scale">
-            <span>Professional Experience</span>
-            <h2>My Experience</h2>
-        </div>
-        
-        <div class="experience-main scroll-bottom">
-            <div class="experience-content">
-                <article class="experience-box">
-                    <h3>Nepal Telecom</h3>
-                    <p>Jan 2025 - April 2025</p>
-                    <p>Worked on network infrastructure projects, focusing on telecommunications systems and data management.</p>
-                </article>
-                
-                <article class="experience-box">
-                    <h3>Auralith Bit</h3>
-                    <p>Dec 2025 - Present</p>
-                    <p>Serving as Technical Lead, overseeing software development projects, team management, and innovative solutions in full-stack development.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="main-text scroll-scale">
-            <span>What I Will Do for You</span>
-            <h2>Latest Projects</h2>
-        </div>
-        
-        <div class="container">
-            <div class="filter-buttons scroll-scale">
-                <button class="button mixitup-control-active" data-filter="all" aria-label="Show all projects">All</button>
-                <button class="button" data-filter=".game" aria-label="Show games">Games</button>
-                <button class="button" data-filter=".webapp" aria-label="Show web apps">Web Apps</button>
-            </div>
             
-            <div class="projects-gallery scroll-bottom">
-                <article class="project-box mix game">
-                    <div class="project-image">
-                        <img src="portfolio1.jpg" alt="Typing Speed Game Project">
-                    </div>
-                    <div class="project-content">
-                        <h3>Typing Speed Game</h3>
-                        <p>A simple Java-based Typing Speed Game developed using Eclipse IDE. The game measures how fast a user can type a given sentence within a limited time.</p>
-                        <a href="#" aria-label="View Typing Speed Game project"><i class="bx bx-link-external"></i></a>
-                    </div>
-                </article>
-                
-                <article class="project-box mix webapp">
-                    <div class="project-image">
-                        <img src="portfolio2.jpg" alt="Online Auction System Project">
-                    </div>
-                    <div class="project-content">
-                        <h3>Online Auction System</h3>
-                        <p>A full-stack e-commerce web application that allows users to browse products, add them to cart, place orders, and simulate payments. Admins can manage products, orders, and users via a secure dashboard.</p>
-                        <a href="#" aria-label="View Online Auction System project"><i class="bx bx-link-external"></i></a>
-                    </div>
-                </article>
-                
-                <article class="project-box mix webapp">
-                    <div class="project-image">
-                        <img src="portfolio3.jpg" alt="Online Examination System Project">
-                    </div>
-                    <div class="project-content">
-                        <h3>Online Examination System</h3>
-                        <p>An online examination system where admins can create exams and students can take them in real-time. It includes login functionality, result viewing, and auto-scoring features.</p>
-                        <a href="#" aria-label="View Online Examination System project"><i class="bx bx-link-external"></i></a>
-                    </div>
-                </article>
-                
-                <article class="project-box mix game">
-                    <div class="project-image">
-                        <img src="portfolio4.jpg" alt="Typing Speed Game Web Project">
-                    </div>
-                    <div class="project-content">
-                        <h3>Typing Speed Game Web</h3>
-                        <p>A browser-based typing game that tracks your typing speed in real-time. Designed for practice and fun, with accuracy and WPM display after each session.</p>
-                        <a href="#" aria-label="View Typing Speed Game Web project"><i class="bx bx-link-external"></i></a>
-                    </div>
-                </article>
-                
-                <article class="project-box mix webapp">
-                    <div class="project-image">
-                        <img src="portfolio5.jpg" alt="Online Order Management System Project">
-                    </div>
-                    <div class="project-content">
-                        <h3>Online Order Management System</h3>
-                        <p>A frontend application for managing orders with features to add, view, update, and delete orders.</p>
-                        <a href="#" aria-label="View Online Order Management System project"><i class="bx bx-link-external"></i></a>
-                    </div>
-                </article>
-                
-                <article class="project-box mix webapp">
-                    <div class="project-image">
-                        <img src="potrfolio6.jpg" alt="TechShop Project">
-                    </div>
-                    <div class="project-content">
-                        <h3>TechShop</h3>
-                        <p>An e-commerce platform for tech products, built with modern web technologies.</p>
-                        <a href="#" aria-label="View TechShop project"><i class="bx bx-link-external"></i></a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
+            <a href="#about" class="scroll-down">
+                <i class="bx bx-chevrons-down"></i>
+            </a>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="main-text scroll-scale">
-            <span>Ask Me Questions</span>
-            <h2>Contact Me</h2>
-        </div>
-        
-        <form action="https://formspree.io/f/xpznqjqy" method="POST" class="scroll-bottom">
-            <input type="text" name="name" placeholder="Your Name" required aria-label="Your name">
-            <input type="email" name="email" placeholder="Your Email" required aria-label="Your email">
-            <input type="text" name="address" placeholder="Your Address" aria-label="Your address">
-            <input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone number">
-            <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message" required aria-label="Your message"></textarea>
-            <div class="btn-box formBtn">
-                <button type="submit" class="btn">Send Message</button>
+        <!-- About Section -->
+        <section class="about section" id="about">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__subtitle">About Me</span>
+                    <h2 class="section__title">Crafting Digital Experiences</h2>
+                </div>
+                
+                <div class="about__container">
+                    <div class="about__image">
+                        <img src="img10.jpg" alt="About Supriya Dwivedi">
+                        <div class="about__image-bg"></div>
+                    </div>
+                    
+                    <div class="about__content">
+                        <h3>A Story of Excellence</h3>
+                        <p>
+                            I'm a passionate Full-Stack Developer specializing in mobile app development and building games with Java. 
+                            I have a strong foundation in full-stack web development, holding a BSC.CSIT degree. I enjoy building 
+                            responsive, user-friendly applications and constantly strive to improve my skills through hands-on projects.
+                        </p>
+                        <p>
+                            My experience includes working with technologies like Java, Spring Boot, MySQL, JavaScript, HTML/CSS, and Git. 
+                            I'm always eager to take on new challenges and contribute to impactful digital solutions across platforms.
+                        </p>
+                        
+                        <div class="about__stats">
+                            <div class="stat-item">
+                                <span class="stat-number">15+</span>
+                                <span class="stat-label">Projects Completed</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">2+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">10+</span>
+                                <span class="stat-label">Happy Clients</span>
+                            </div>
+                        </div>
+                        
+                        <div class="about__buttons">
+                            <a href="#contact" class="btn btn--primary">Let's Talk</a>
+                            <a href="#projects" class="btn btn--outline">View Projects</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-    </section>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services section" id="services">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__subtitle">What I Offer</span>
+                    <h2 class="section__title">My Services</h2>
+                </div>
+                
+                <div class="services__grid">
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i class="bx bx-code-alt"></i>
+                        </div>
+                        <h3>Full-Stack Development</h3>
+                        <p>Building complete web applications from frontend to backend with modern technologies and best practices.</p>
+                        <a href="#contact" class="service-link">
+                            Hire Me <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </article>
+                    
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i class="bx bx-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile App Development</h3>
+                        <p>Creating responsive and user-friendly mobile applications with seamless performance across platforms.</p>
+                        <a href="#contact" class="service-link">
+                            Hire Me <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </article>
+                    
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <i class="bx bx-game"></i>
+                        </div>
+                        <h3>Game Development</h3>
+                        <p>Developing engaging games using Java with focus on gameplay mechanics and user experience.</p>
+                        <a href="#contact" class="service-link">
+                            Hire Me <i class="bx bx-right-arrow-alt"></i>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills section" id="skills">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__subtitle">Technical Skills</span>
+                    <h2 class="section__title">My Expertise</h2>
+                </div>
+                
+                <div class="skills__container">
+                    <div class="skills__content">
+                        <h3>Technical Skills</h3>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML & CSS</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="90"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="85"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Java</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="90"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Spring Boot</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="80"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">MySQL</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skills__content">
+                        <h3>Professional Skills</h3>
+                        
+                        <div class="professional-skills">
+                            <div class="professional-item">
+                                <div class="progress-circle" data-percent="90">
+                                    <span class="progress-number">90%</span>
+                                </div>
+                                <span class="professional-label">Team Work</span>
+                            </div>
+                            
+                            <div class="professional-item">
+                                <div class="progress-circle" data-percent="70">
+                                    <span class="progress-number">70%</span>
+                                </div>
+                                <span class="professional-label">Project Management</span>
+                            </div>
+                            
+                            <div class="professional-item">
+                                <div class="progress-circle" data-percent="85">
+                                    <span class="progress-number">85%</span>
+                                </div>
+                                <span class="professional-label">Creativity</span>
+                            </div>
+                            
+                            <div class="professional-item">
+                                <div class="progress-circle" data-percent="75">
+                                    <span class="progress-number">75%</span>
+                                </div>
+                                <span class="professional-label">Communication</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience section" id="experience">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__subtitle">Professional Journey</span>
+                    <h2 class="section__title">Work Experience</h2>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Dec 2025 - Present</span>
+                            <h3>Technical Lead</h3>
+                            <h4>Auralith Bit</h4>
+                            <p>Serving as Technical Lead, overseeing software development projects, team management, and innovative solutions in full-stack development.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Jan 2025 - April 2025</span>
+                            <h3>Network Infrastructure</h3>
+                            <h4>Nepal Telecom</h4>
+                            <p>Worked on network infrastructure projects, focusing on telecommunications systems and data management.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects section" id="projects">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__subtitle">Portfolio</span>
+                    <h2 class="section__title">Featured Projects</h2>
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter=".game">Games</button>
+                    <button class="filter-btn" data-filter=".webapp">Web Apps</button>
+                </div>
+                
+                <div class="projects__grid">
+                    <article class="project-card mix game">
+                        <div class="project-image">
+                            <img src="portfolio1.jpg" alt="Typing Speed Game">
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">
+                                    <i class="bx bx-link-external"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Game</span>
+                            <h3>Typing Speed Game</h3>
+                            <p>A Java-based typing speed game developed using Eclipse IDE that measures typing speed within a limited time.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="project-card mix webapp">
+                        <div class="project-image">
+                            <img src="portfolio2.jpg" alt="Online Auction System">
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">
+                                    <i class="bx bx-link-external"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Web App</span>
+                            <h3>Online Auction System</h3>
+                            <p>A full-stack e-commerce web application for browsing products, placing orders, and simulating payments.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="project-card mix webapp">
+                        <div class="project-image">
+                            <img src="portfolio3.jpg" alt="Online Examination System">
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">
+                                    <i class="bx bx-link-external"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Web App</span>
+                            <h3>Online Examination System</h3>
+                            <p>An online examination system with admin exam creation and real-time student testing with auto-scoring.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="project-card mix game">
+                        <div class="project-image">
+                            <img src="portfolio4.jpg" alt="Typing Speed Game Web">
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">
+                                    <i class="bx bx-link-external"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Game</span>
+                            <h3>Typing Speed Game Web</h3>
+                            <p>A browser-based typing game that tracks typing speed in real-time with accuracy and WPM display.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="project-card mix webapp">
+                        <div class="project-image">
+                            <img src="portfolio5.jpg" alt="Order Management System">
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">
+                                    <i class="bx bx-link-external"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Web App</span>
+                            <h3>Order Management System</h3>
+                            <p>A frontend application for managing orders with features to add, view, update, and delete orders.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="project-card mix webapp">
+                        <div class="project-image">
+                            <img src="portfolio6.jpg" alt="TechShop">
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">
+                                    <i class="bx bx-link-external"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">Web App</span>
+                            <h3>TechShop</h3>
+                            <p>An e-commerce platform for tech products built with modern web technologies.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__subtitle">Get In Touch</span>
+                    <h2 class="section__title">Contact Me</h2>
+                </div>
+                
+                <div class="contact__container">
+                    <div class="contact__info">
+                        <h3>Let's work together</h3>
+                        <p>Feel free to reach out if you have any questions or want to collaborate on a project.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="bx bx-envelope"></i>
+                                <div>
+                                    <span class="label">Email</span>
+                                    <a href="mailto:me.supriya07@gmail.com">me.supriya07@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="bx bx-map"></i>
+                                <div>
+                                    <span class="label">Location</span>
+                                    <span>Kathmandu, Nepal</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-social">
+                            <a href="https://linkedin.com/in/supriya-dwivedi" target="_blank" rel="noopener noreferrer">
+                                <i class="bx bxl-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/su5867" target="_blank" rel="noopener noreferrer">
+                                <i class="bx bxl-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <form action="https://formspree.io/f/xpznqjqy" method="POST" class="contact__form">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="subject" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary">
+                            <i class="bx bx-send"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <p>Copyright &copy; 2023 by Supriya Dwivedi | All Rights Reserved</p>
-        <a href="#home" aria-label="Scroll to top">
-            <i class="bx bx-up-arrow-alt"></i>
-        </a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <a href="#home" class="footer__logo">
+                        <span class="logo-text">Supriya</span>
+                        <span class="logo-dot">.</span>
+                    </a>
+                    <p>Full-Stack Developer crafting digital experiences.</p>
+                </div>
+                
+                <div class="footer__links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Work</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2023 Supriya Dwivedi. All rights reserved.</p>
+                <a href="#home" class="back-to-top">
+                    <i class="bx bx-chevron-up"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="mixitup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mixitup@3.3.1/dist/mixitup.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
