@@ -1,7 +1,7 @@
 /* TEAM */
 Developer: Supriya Dwivedi
 Site: https://supriyadwivedi.com.np
-Location: Kathmandu, Nepal
+Location: Bhairahawa, Nepal
 
 /* THANKS */
 Name: Supriya Dwivedi
