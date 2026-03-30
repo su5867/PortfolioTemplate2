@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initProjectFilter();
     initSkillBars();
+    initProgressCircles();
     initSmoothScroll();
     initFormValidation();
 });
@@ -245,6 +246,20 @@ function animateSkillBars() {
         setTimeout(() => {
             bar.style.width = `${percent}%`;
         }, index * 150);
+    });
+}
+
+/**
+ * Progress Circles - Initialize Professional Skills
+ */
+function initProgressCircles() {
+    const progressCircles = document.querySelectorAll('.progress-circle');
+    
+    progressCircles.forEach(circle => {
+        const percent = circle.dataset.percent;
+        // Convert percentage to degrees (0-100% -> 0-360deg)
+        const degrees = (percent / 100) * 360;
+        circle.style.setProperty('--percent', `${degrees}deg`);
     });
 }
 

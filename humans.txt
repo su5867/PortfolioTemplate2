@@ -1,0 +1,13 @@
+/* TEAM */
+Developer: Supriya Dwivedi
+Site: https://supriyadwivedi.com.np
+Location: Kathmandu, Nepal
+
+/* THANKS */
+Name: Supriya Dwivedi
+
+/* SITE */
+Last update: 2026/03/30
+Standards: HTML5, CSS3, JavaScript
+Components: Modern Web Technologies
+Software: VS Code
