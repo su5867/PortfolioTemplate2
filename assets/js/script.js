@@ -63,14 +63,12 @@ function initPreloader() {
     const preloader = document.getElementById('preloader');
     if (!preloader) return;
 
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            preloader.classList.add('hide');
-            document.body.classList.remove('loading');
-            
-            // Trigger initial animations after preloader
-            initOnLoadAnimations();
-        }, 800);
+    // Reveal the page as soon as its markup is ready; remote fonts and icons
+    // should never hold the whole site behind a full-screen loader.
+    requestAnimationFrame(() => {
+        preloader.classList.add('hide');
+        document.body.classList.remove('loading');
+        initOnLoadAnimations();
     });
 }
 
@@ -247,26 +245,6 @@ function initScrollAnimations() {
         observer.observe(section);
     });
 
-    // Observe project cards with stagger
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        const stagger = Math.min(index % 4, 3) * 0.07;
-        card.style.transition = `all 0.5s ease ${stagger}s`;
-        
-        const cardObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    cardObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        cardObserver.observe(card);
-    });
 }
 
 /**
@@ -308,37 +286,22 @@ function initProgressCircles() {
     });
 }
 
-/**
- * Project Filter (MixItUp)
- */
+/** Project filters work locally and remain available without a third-party CDN. */
 function initProjectFilter() {
     const container = document.querySelector('.projects__grid');
     const buttons = document.querySelectorAll('.filter-btn');
-    
-    if (!container || typeof mixitup === 'undefined') return;
+    if (!container || !buttons.length) return;
 
-    try {
-        const mixer = mixitup(container, {
-            animation: {
-                duration: 400,
-                effects: 'fade scale(0.95)',
-                nudge: false
-            },
-            selectors: {
-                target: '.project-card'
-            }
-        });
-
-        // Filter button active state
-        buttons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                buttons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+    const cards = container.querySelectorAll('.project-card');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.dataset.filter;
+            buttons.forEach(item => item.classList.toggle('active', item === button));
+            cards.forEach(card => {
+                card.hidden = filter !== 'all' && !card.matches(filter);
             });
         });
-    } catch (error) {
-        console.error('MixItUp error:', error);
-    }
+    });
 }
 
 /**

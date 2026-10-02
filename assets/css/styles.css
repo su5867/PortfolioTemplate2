@@ -2051,6 +2051,10 @@ body { background: #101a22; color: #e5ebee; }
 .about, .experience { background: #111c25; }
 .services, .skills, .contact { background: #14212a; }
 .projects { background: #101a22; }
+#projects,
+#projects.reveal,
+#projects.reveal.active { opacity: 1; visibility: visible; transform: none; }
+#projects .project-card { opacity: 1; visibility: visible; transform: none; }
 .about__content, .service-card, .skills__content, .timeline-content, .project-card, .contact__form { border-color: #2b3a44; background: #182630; box-shadow: 0 18px 46px rgba(0,0,0,.14); }
 .about__content::before { background: linear-gradient(180deg, #ff725e, #c84c40); }
 .about__content h3, .service-card h3, .skills__content h3, .timeline-content h3, .project-info h3, .contact__info h3 { color: #f4f6f7; }
