@@ -1,20 +1,29 @@
-# Portfolio Template
+# Supriya Dwivedi — Portfolio
 
-This is a customizable portfolio template designed to showcase your work and skills in a professional manner. The template is built using modern web technologies and is easy to set up and modify.
+A responsive, static portfolio site built with HTML, CSS, and vanilla JavaScript. No build step or package installation is required.
 
-## 🚀 Features
-- Responsive design for all screen sizes
-- Customizable sections for projects, skills, and contact
-- Smooth scrolling and animations
-- Easy-to-edit HTML, CSS, and JavaScript files
+## Run locally
 
-  Live Deployment: https://portfolio-template2-rust.vercel.app/
+Open `index.html` in a browser, or serve the repository root with any static web server. The root must remain the hosting document root so `robots.txt` and `sitemap.xml` are available at their standard URLs.
 
-## 📂 Folder Structure
+## Repository layout
+
+```text
+.
+├── assets/
+│   ├── css/           # Site styles
+│   ├── documents/     # Downloadable documents
+│   ├── images/        # Portfolio and profile imagery
+│   └── js/            # Site behavior
+├── index.html         # Page markup and metadata
+├── humans.txt         # Site credits
+├── robots.txt         # Crawler directives
+├── sitemap.xml        # Search engine sitemap
+└── TODO.md            # Project backlog
 ```
-PortfolioTemplate2/
-│── assets/         # Images, icons, and other assets
-│── css/            # Stylesheets
-│── js/             # JavaScript files
-│── index.html      # Main HTML file
-│── README.md       # Project Documentation
+
+## Deployment
+
+Deploy as a static site with the repository root as the publish directory. There are no generated build artifacts.
+
+Live site: <https://portfolio-template2-rust.vercel.app/>

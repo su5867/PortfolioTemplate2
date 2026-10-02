@@ -12,7 +12,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://supriyadwivedi.com.np/img1.jpg</image:loc>
+      <image:loc>https://supriyadwivedi.com.np/assets/images/img1.jpg</image:loc>
       <image:caption>Supriya Dwivedi - Computer Science Student and Developer from Bhairahawa, Nepal</image:caption>
       <image:title>Supriya Dwivedi Portfolio Photo</image:title>
     </image:image>
@@ -57,15 +57,15 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://supriyadwivedi.com.np/portfolio1.jpg</image:loc>
+      <image:loc>https://supriyadwivedi.com.np/assets/images/portfolio1.jpg</image:loc>
       <image:caption>Typing Speed Game by Supriya Dwivedi</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://supriyadwivedi.com.np/portfolio2.jpg</image:loc>
+      <image:loc>https://supriyadwivedi.com.np/assets/images/portfolio2.jpg</image:loc>
       <image:caption>Online Auction System by Supriya Dwivedi</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://supriyadwivedi.com.np/portfolio3.jpg</image:loc>
+      <image:loc>https://supriyadwivedi.com.np/assets/images/portfolio3.jpg</image:loc>
       <image:caption>Online Examination System by Supriya Dwivedi</image:caption>
     </image:image>
   </url>
