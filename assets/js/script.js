@@ -6,6 +6,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all modules
+    initTheme();
     initPreloader();
     initNavigation();
     initTypingAnimation();
@@ -16,6 +17,44 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initFormValidation();
 });
+
+/**
+ * Theme toggle
+ */
+function initTheme() {
+    const root = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-toggle-icon');
+    if (!toggle || !icon) return;
+
+    let savedTheme = null;
+    try {
+        savedTheme = localStorage.getItem('portfolio-theme');
+    } catch (error) {
+        // Theme switching remains available when browser storage is disabled.
+    }
+
+    const applyTheme = theme => {
+        const isLight = theme === 'light';
+        root.dataset.theme = isLight ? 'light' : 'dark';
+        icon.className = `bx ${isLight ? 'bx-moon' : 'bx-sun'}`;
+        const nextTheme = isLight ? 'dark' : 'light';
+        toggle.setAttribute('aria-label', `Switch to ${nextTheme} mode`);
+        toggle.setAttribute('title', `Switch to ${nextTheme} mode`);
+        toggle.setAttribute('aria-pressed', String(isLight));
+    };
+
+    applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+    toggle.addEventListener('click', () => {
+        const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        applyTheme(nextTheme);
+        try {
+            localStorage.setItem('portfolio-theme', nextTheme);
+        } catch (error) {
+            // Keep the selected theme for the current page if storage is disabled.
+        }
+    });
+}
 
 /**
  * Preloader
