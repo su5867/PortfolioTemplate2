@@ -133,9 +133,9 @@ function initTypingAnimation() {
     if (!typedText) return;
 
     const phrases = [
-        'Full-Stack Developer',
-        'Game Developer', 
-        'App Developer'
+        'Thoughtful, maintainable software',
+        'Full-stack problem solving',
+        'From plan to delivery'
     ];
 
     let phraseIndex = 0;
@@ -176,6 +176,11 @@ function initTypingAnimation() {
  * Scroll Animations using Intersection Observer
  */
 function initScrollAnimations() {
+    if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('section').forEach(section => section.classList.add('reveal', 'active'));
+        return;
+    }
+
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -208,7 +213,8 @@ function initScrollAnimations() {
     projectCards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
-        card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        const stagger = Math.min(index % 4, 3) * 0.07;
+        card.style.transition = `all 0.5s ease ${stagger}s`;
         
         const cardObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
